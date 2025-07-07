@@ -61,25 +61,6 @@ with tab1:
 # Tab 2 - Preprocessing
 # Tab 2 - Preprocessing
 with tab2:
-    st.header("⚙️ Preprocessing Data")
-
-    if 'df' in st.session_state:
-        df = st.session_state['df'].copy()
-
-        st.subheader("1️⃣ Normalisasi Nama Kolom")
-        df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
-        st.write("Kolom setelah dinormalisasi:")
-        st.write(df.columns.tolist())
-
-        # Rename untuk kemudahan akses kolom
-        df.rename(columns={
-            'harga_pakan_ternak_broiler': 'pakan',
-            'harga_doc_broiler': 'doc',
-            'harga_jagung_tk_peternak': 'jagung',
-            'harga_daging_ayam_broiler': 'daging',
-            'date': 'tanggal'
-        }, inplace=True)
-
         st.subheader("2️⃣ Penanganan Missing Values (Interpolasi + Fill)")
         kolom_target = ['pakan', 'doc', 'jagung', 'daging']
         df[kolom_target] = df[kolom_target].interpolate(method='linear')
